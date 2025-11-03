@@ -3,29 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <script>
-        // Redirect to one page by default
-        window.onload = function() {
-            window.location.href = "./pages/DhanviTrivediUIUXDesignerPortfolio.html";
+    <title>Loading Screen</title>
+
+    <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdhanvitri1044back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
+    <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </script>
-  
-  <script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fdhanvitri1044back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.9"></script>
-  <script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
-  </head>
-<body class="bg-background">
-    <div class="min-h-screen flex items-center justify-center">
-        <div class="text-center">
-            <h1 class="text-2xl font-semibold text-text-primary">Redirecting...</h1>
-            <p class="mt-2 text-text-secondary">Please wait while we redirect you to a page.</p>
-            <div class="mt-4">
-                 <p class="text-text-secondary">If you are not redirected automatically, please choose a page:</p>
-                <div class="mt-2 space-y-2">
-                        <a href="./pages/DhanviTrivediUIUXDesignerPortfolio.html" class="block px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover transition-colors">DhanviTrivediUIUXDesignerPortfolio</a>
-                    </div>
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            background: #F8F8F8;
+        }
+
+        /* Page Load Animation Overlay */
+        .page-load-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #F8F8F8;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .page-load-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* 3D Torus Animation */
+        .torus-container {
+            perspective: 1000px;
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .torus-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: torusRotate 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .torus-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin: -100px 0 0 -100px;
+            border-radius: 50%;
+            background:
+                radial-gradient(ellipse at 25% 25%, rgba(255, 20, 147, 0.9) 0%, rgba(255, 20, 147, 0.6) 30%, transparent 60%),
+                radial-gradient(ellipse at 75% 25%, rgba(138, 43, 226, 0.8) 0%, rgba(138, 43, 226, 0.5) 30%, transparent 60%),
+                radial-gradient(ellipse at 25% 75%, rgba(255, 105, 180, 0.7) 0%, rgba(255, 105, 180, 0.4) 30%, transparent 60%),
+                radial-gradient(ellipse at 75% 75%, rgba(199, 21, 133, 0.6) 0%, rgba(199, 21, 133, 0.3) 30%, transparent 60%),
+                conic-gradient(from 0deg, rgba(255, 20, 147, 0.8), rgba(138, 43, 226, 0.8), rgba(255, 105, 180, 0.8), rgba(199, 21, 133, 0.8), rgba(255, 20, 147, 0.8));
+            box-shadow:
+                inset 0 0 80px rgba(255, 255, 255, 0.3),
+                inset 0 0 120px rgba(255, 255, 255, 0.1),
+                0 0 80px rgba(255, 20, 147, 0.6),
+                0 20px 60px rgba(138, 43, 226, 0.4),
+                0 40px 80px rgba(0, 0, 0, 0.1);
+            filter: blur(0.5px) contrast(1.2) saturate(1.4);
+            animation: torusPulse 3s ease-in-out infinite, torusColorShift 6s ease-in-out infinite;
+        }
+
+        .torus-ring:nth-child(1) {
+            transform: rotateX(0deg) rotateY(0deg);
+            animation-delay: 0s;
+        }
+
+        .torus-ring:nth-child(2) {
+            transform: rotateX(60deg) rotateY(60deg);
+            animation-delay: 0.5s;
+            opacity: 0.8;
+        }
+
+        .torus-ring:nth-child(3) {
+            transform: rotateX(120deg) rotateY(120deg);
+            animation-delay: 1s;
+            opacity: 0.6;
+        }
+
+        @keyframes torusRotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(0.5);
+                opacity: 0;
+            }
+            25% {
+                transform: rotateX(90deg) rotateY(90deg) rotateZ(45deg) scale(0.8);
+                opacity: 0.7;
+            }
+            50% {
+                transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg) scale(1.1);
+                opacity: 1;
+            }
+            75% {
+                transform: rotateX(270deg) rotateY(270deg) rotateZ(135deg) scale(0.9);
+                opacity: 0.8;
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(180deg) scale(0.3);
+                opacity: 0;
+            }
+        }
+
+        @keyframes torusPulse {
+            0%, 100% {
+                transform: scale(1) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+                filter: blur(0.3px) contrast(1.2) saturate(1.4) hue-rotate(0deg);
+            }
+            50% {
+                transform: scale(1.15) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+                filter: blur(0.8px) contrast(1.3) saturate(1.6) hue-rotate(20deg);
+            }
+        }
+
+        @keyframes torusColorShift {
+            0% {
+                filter: blur(0.3px) contrast(1.2) saturate(1.4) hue-rotate(0deg);
+            }
+            25% {
+                filter: blur(0.5px) contrast(1.3) saturate(1.5) hue-rotate(90deg);
+            }
+            50% {
+                filter: blur(0.8px) contrast(1.4) saturate(1.6) hue-rotate(180deg);
+            }
+            75% {
+                filter: blur(0.5px) contrast(1.3) saturate(1.5) hue-rotate(270deg);
+            }
+            100% {
+                filter: blur(0.3px) contrast(1.2) saturate(1.4) hue-rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Load Animation Overlay -->
+    <div class="page-load-overlay" id="page-load-overlay">
+        <div class="torus-container">
+            <div class="torus-3d">
+                <div class="torus-ring"></div>
+                <div class="torus-ring"></div>
+                <div class="torus-ring"></div>
             </div>
         </div>
     </div>
+
+    <script>
+        // After animation (4s) fade out and redirect
+        setTimeout(() => {
+            document.getElementById('page-load-overlay').classList.add('hidden');
+            
+            // Redirect after fade
+            setTimeout(() => {
+                window.location.href = "./pages/DhanviTrivediUIUXDesignerPortfolio.html";
+            }, 800);
+        }, 4000);
+    </script>
 </body>
 </html>
